@@ -10,6 +10,7 @@ declare module 'styled-components' {
         };
         spacing: {
             unset: string;
+            '7xs': string;
             '6xs': string;
             '5xs': string;
             '4xs': string;
@@ -33,6 +34,7 @@ declare module 'styled-components' {
         };
         height: {
             card: number;
+            questListImage: number;
         };
         colors: {
             gold: string;

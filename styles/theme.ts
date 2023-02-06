@@ -10,8 +10,9 @@ export const defaultTheme = {
     },
     spacing: {
         unset: 'unset',
-        '6xs': '2px',
-        '5xs': '4px',
+        '7xs': '2px',
+        '6xs': '4px',
+        '5xs': '6px',
         '4xs': '8px',
         '3xs': '12px',
         '2xs': '16px',
@@ -32,7 +33,8 @@ export const defaultTheme = {
         card: 332
     },
     height: {
-        card: 222
+        card: 222,
+        questListImage: 106.10514831542969
     }
 };
 

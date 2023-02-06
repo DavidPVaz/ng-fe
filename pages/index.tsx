@@ -1,25 +1,20 @@
 import styled from 'styled-components';
-import { StyledContent } from '@/shared/components';
+import { StyledContent, StyledCard } from '@/shared/components';
 
 const Home = () => (
     <StyledContent>
         <Quests>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            <StyledCard />
+            <StyledCard />
+            <StyledCard />
+            <StyledCard />
+            <StyledCard />
+            <StyledCard />
+            <StyledCard />
+            <StyledCard />
+            <StyledCard />
+            <StyledCard />
+            <StyledCard />
         </Quests>
     </StyledContent>
 );
@@ -64,44 +59,5 @@ const Quests = styled.div`
 
     @media only screen and (max-width: 400px) {
         margin-top: ${({ theme: { spacing } }) => `${spacing['3xl']}`};
-    }
-`;
-
-const Card = styled.div`
-    position: relative;
-    display: flex;
-    height: 222px;
-    width: 332px;
-    border-radius: ${({
-        theme: {
-            radius: { xl }
-        }
-    }) => `${xl}`};
-    border: ${({
-        theme: {
-            colors: { darkGrey }
-        }
-    }) => `1px solid ${darkGrey}80`};
-    background: ${({
-        theme: {
-            colors: { lighterBlack }
-        }
-    }) => `${lighterBlack}`};
-
-    @media only screen and (max-width: 400px) {
-        height: ${({
-            theme: {
-                width: { card: cardWidth },
-                height: { card: cardHeight }
-            }
-        }) => `calc(((${cardHeight} + 2) / (${cardWidth} + 2)) * 80vw)`};
-        width: 80vw;
-        min-width: 280px;
-        min-height: ${({
-            theme: {
-                width: { card: cardWidth },
-                height: { card: cardHeight }
-            }
-        }) => `calc(((${cardHeight} + 2) / (${cardWidth} + 2)) * 280px)`};
     }
 `;
