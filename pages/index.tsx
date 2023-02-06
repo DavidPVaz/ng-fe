@@ -1,14 +1,15 @@
-import Head from 'next/head';
+import styled from 'styled-components';
+import { StyledContent } from '@/shared/components';
 
-export default function Home() {
-	return (
-		<>
-			<Head>
-				<title>Node Guardians</title>
-				<meta name='description' content='Node Guardians frontend' />
-			</Head>
+const Home = () => (
+    <StyledContent>
+        <Temp>Here</Temp>
+    </StyledContent>
+);
 
-			<main></main>
-		</>
-	);
-}
+export default Home;
+
+const Temp = styled.div`
+    display: flex;
+    color: white;
+`;
