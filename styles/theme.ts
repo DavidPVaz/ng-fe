@@ -27,6 +27,12 @@ export const defaultTheme = {
         '6xl': '140px',
         '7xl': '160px',
         '8xl': '180px'
+    },
+    width: {
+        card: 332
+    },
+    height: {
+        card: 222
     }
 };
 

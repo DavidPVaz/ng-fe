@@ -6,6 +6,7 @@ declare module 'styled-components' {
             s: string;
             m: string;
             l: string;
+            xl: string;
         };
         spacing: {
             unset: string;
@@ -26,6 +27,12 @@ declare module 'styled-components' {
             '6xl': string;
             '7xl': string;
             '8xl': string;
+        };
+        width: {
+            card: number;
+        };
+        height: {
+            card: number;
         };
         colors: {
             gold: string;
