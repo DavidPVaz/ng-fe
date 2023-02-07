@@ -1,5 +1,5 @@
-// theme.ts
 import { DefaultTheme } from 'styled-components';
+import { COLORS } from '@/shared/enums';
 
 export const defaultTheme = {
     radius: {
@@ -29,17 +29,6 @@ export const defaultTheme = {
         '7xl': '160px',
         '8xl': '180px'
     },
-    colors: {
-        // set theme colors
-        gold: '#BEA77E',
-        white: '#FFFFF4',
-        grey: '#8E8E8E',
-        darkGrey: '#333030',
-        lighterBlack: '#1D1C1A',
-        black: '#151515',
-        blue: '#98A7F5',
-        green: '#93D788'
-    },
     width: {
         card: 332
     },
@@ -50,5 +39,16 @@ export const defaultTheme = {
 };
 
 export const darkTheme: DefaultTheme = {
-    ...defaultTheme
+    ...defaultTheme,
+    colors: {
+        // set theme colors
+        [COLORS.GOLD]: '#BEA77E',
+        [COLORS.WHITE]: '#FFFFF4',
+        [COLORS.GREY]: '#8E8E8E',
+        [COLORS.DARK_GREY]: '#333030',
+        [COLORS.LIGHTER_BLACK]: '#1D1C1A',
+        [COLORS.BLACK]: '#151515',
+        [COLORS.BLUE]: '#98A7F5',
+        [COLORS.GREEN]: '#93D788'
+    }
 };

@@ -1,41 +1,34 @@
 import React from 'react';
-import styled, { DefaultTheme } from 'styled-components';
-import { KeyStrings } from '@/types/theme';
-import { StyledImage } from '@/shared/components';
+import styled from 'styled-components';
+import { StyledImage, StyledSword } from '@/shared/components';
+import { COLORS } from '@/shared/enums';
+import { Quest } from '@/types/quests';
 
-export const StyledCard = () => (
-    <Card>
+const isSkillTree = (index: number) => index === 0;
+const isDifficulty = (index: number) => index === 1;
+
+const renderSwords = (difficulty: number) =>
+    Array(5)
+        .fill(0)
+        .map((_, index) => <StyledSword key={index} color={difficulty > index ? COLORS.GOLD : undefined} />);
+
+export const StyledCard = ({ cover, id, title, ...rest }: Quest) => (
+    <Card onClick={() => {}}>
         <ImageHeader>
-            <StyledImage src={'https://i.dummyjson.com/data/products/1/thumbnail.jpg'} alt={'Quest thumbnail'} lazy />
+            <StyledImage src={cover} alt={`Quest ${id} thumbnail`} lazy />
         </ImageHeader>
         <DetailsTop>
-            <QuestTitle>delegate call detection</QuestTitle>
+            <QuestTitle>{title}</QuestTitle>
         </DetailsTop>
         <Details>
-            <SpecWrapper>
-                <Spec color={'gold'}>Skill tree</Spec>
-                <Spec>Spec</Spec>
-            </SpecWrapper>
-            <SpecWrapper>
-                <Spec color={'gold'}>Spec</Spec>
-                <Spec>Spec</Spec>
-            </SpecWrapper>
-            <SpecWrapper>
-                <Spec color={'gold'}>Spec</Spec>
-                <Spec>Spec</Spec>
-            </SpecWrapper>
-            <SpecWrapper>
-                <Spec color={'gold'}>Spec</Spec>
-                <Spec>Spec</Spec>
-            </SpecWrapper>
-            <SpecWrapper>
-                <Spec color={'gold'}>Spec</Spec>
-                <Spec>Spec</Spec>
-            </SpecWrapper>
-            <SpecWrapper>
-                <Spec color={'gold'}>Spec</Spec>
-                <Spec>Spec</Spec>
-            </SpecWrapper>
+            {Object.entries(rest).map(([key, value]: any[], index) => (
+                <SpecWrapper key={index}>
+                    <Spec color={COLORS.GOLD}>{key}</Spec>
+                    <Spec color={isSkillTree(index) ? COLORS.BLUE : undefined}>
+                        {isDifficulty(index) ? renderSwords(value) : value}
+                    </Spec>
+                </SpecWrapper>
+            ))}
         </Details>
     </Card>
 );
@@ -72,6 +65,15 @@ const Card = styled.div`
         }
     }) => `${lighterBlack}`};
 
+    &:hover {
+        cursor: pointer;
+        border: ${({
+            theme: {
+                colors: { gold }
+            }
+        }) => `1px solid ${gold}80`};
+    }
+
     @media only screen and (max-width: 400px) {
         height: ${({
             theme: {
@@ -80,13 +82,13 @@ const Card = styled.div`
             }
         }) => `calc(((${cardHeight} + 2) / (${cardWidth} + 2)) * 80vw)`};
         width: 80vw;
-        min-width: 280px;
+        min-width: 290px;
         min-height: ${({
             theme: {
                 width: { card: cardWidth },
                 height: { card: cardHeight }
             }
-        }) => `calc(((${cardHeight} + 2) / (${cardWidth} + 2)) * 280px)`};
+        }) => `calc(((${cardHeight} + 2) / (${cardWidth} + 2)) * 290px)`};
     }
 `;
 
@@ -145,32 +147,38 @@ const Details = styled.div`
     flex-wrap: wrap;
     padding-left: 12px;
     padding-right: 12px;
-    gap: 10px 20px;
+    gap: 10px 35px;
 
     @media only screen and (max-width: 400px) {
-        gap: 6px 10px;
+        gap: 6px 6px;
     }
 `;
 
 const SpecWrapper = styled.div`
     position: relative;
-    flex: calc(45%);
+    flex: 40%;
     height: 14px;
     display: flex;
     flex-direction: row;
     flex-wrap: no-wrap;
     justify-content: flex-start;
     align-items: center;
+    gap: 0 5px;
+
+    @media only screen and (max-width: 400px) {
+        gap: 0px 3px;
+    }
 `;
 
 const Spec = styled.span`
     font-family: Lato;
-    font-style: normal;
-    font-weight: 400;
     font-size: 12px;
     line-height: 14px;
     min-width: 60px;
     text-align: left;
     text-transform: capitalize;
-    color: ${({ color, theme: { colors } }: any) => colors[color] ?? colors.white};
+    display: flex;
+    justify-content: flex-start;
+    gap: 0 2px;
+    color: ${({ color = COLORS.WHITE, theme: { colors } }: any) => colors[color]};
 `;

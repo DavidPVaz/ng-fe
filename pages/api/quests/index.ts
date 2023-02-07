@@ -18,15 +18,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
         const formattedToQuests = getRes.map((quest: any) => {
             return {
+                cover: quest.thumbnail,
                 id: quest.id,
-                skillTree: quest.category.replace('-', ' '), // 'home-decoration' => 'home decoration'
-                skill: quest.brand,
                 title: quest.title,
+                skillTree: quest.category.replace('-', ' '), // 'home-decoration' => 'home decoration'
                 difficulty: Math.floor(quest.rating),
+                skill: quest.brand,
                 experience: quest.stock * 100,
-                gold: quest.price,
                 type: '-',
-                cover: quest.thumbnail
+                gold: quest.price
             };
         });
 

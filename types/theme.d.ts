@@ -1,15 +1,7 @@
 import 'styled-components';
 
-export interface KeyStrings {
-    [key: string]: Record<[index: string], string>;
-}
-
-export interface KeyNumbers {
-    [key: string]: Record<[index: string], number>;
-}
-
 declare module 'styled-components' {
-    export interface DefaultTheme extends KeyNumbers, KeyStrings {
+    export interface DefaultTheme {
         radius: {
             s: string;
             m: string;
