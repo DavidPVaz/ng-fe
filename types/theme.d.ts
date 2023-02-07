@@ -1,7 +1,15 @@
 import 'styled-components';
 
+export interface KeyStrings {
+    [key: string]: Record<[index: string], string>;
+}
+
+export interface KeyNumbers {
+    [key: string]: Record<[index: string], number>;
+}
+
 declare module 'styled-components' {
-    export interface DefaultTheme {
+    export interface DefaultTheme extends KeyNumbers, KeyStrings {
         radius: {
             s: string;
             m: string;
@@ -29,13 +37,6 @@ declare module 'styled-components' {
             '7xl': string;
             '8xl': string;
         };
-        width: {
-            card: number;
-        };
-        height: {
-            card: number;
-            questListImage: number;
-        };
         colors: {
             gold: string;
             white: string;
@@ -45,6 +46,13 @@ declare module 'styled-components' {
             black: string;
             blue: string;
             green: string;
+        };
+        width: {
+            card: number;
+        };
+        height: {
+            card: number;
+            questListImage: number;
         };
     }
 }

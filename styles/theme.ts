@@ -29,17 +29,6 @@ export const defaultTheme = {
         '7xl': '160px',
         '8xl': '180px'
     },
-    width: {
-        card: 332
-    },
-    height: {
-        card: 222,
-        questListImage: 106.10514831542969
-    }
-};
-
-export const darkTheme: DefaultTheme = {
-    ...defaultTheme,
     colors: {
         // set theme colors
         gold: '#BEA77E',
@@ -50,5 +39,16 @@ export const darkTheme: DefaultTheme = {
         black: '#151515',
         blue: '#98A7F5',
         green: '#93D788'
+    },
+    width: {
+        card: 332
+    },
+    height: {
+        card: 222,
+        questListImage: 106.10514831542969
     }
+};
+
+export const darkTheme: DefaultTheme = {
+    ...defaultTheme
 };
