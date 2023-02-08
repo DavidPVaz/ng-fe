@@ -4,8 +4,11 @@ import { StyledImage, StyledSword } from '@/shared/components';
 import { COLORS } from '@/shared/enums';
 import { Quest } from '@/types/quests';
 
-const isSkillTree = (index: number) => index === 0;
-const isDifficulty = (index: number) => index === 1;
+enum EXPECTED {
+    SKILL_TREE = 'skillTree',
+    DIFFICULTY = 'difficulty'
+}
+const isKey = ({ key, expected }: { key: string; expected: string }) => key === expected;
 
 const renderSwords = (difficulty: number) =>
     Array(5)
@@ -21,11 +24,11 @@ export const StyledCard = ({ cover, id, title, ...rest }: Quest) => (
             <QuestTitle>{title}</QuestTitle>
         </DetailsTop>
         <Details>
-            {Object.entries(rest).map(([key, value]: any[], index) => (
-                <SpecWrapper key={index}>
+            {Object.entries(rest).map(([key, value]) => (
+                <SpecWrapper key={key}>
                     <Spec color={COLORS.GOLD}>{key}</Spec>
-                    <Spec color={isSkillTree(index) ? COLORS.BLUE : undefined}>
-                        {isDifficulty(index) ? renderSwords(value) : value}
+                    <Spec color={isKey({ key, expected: EXPECTED.SKILL_TREE }) ? COLORS.BLUE : undefined}>
+                        {isKey({ key, expected: EXPECTED.DIFFICULTY }) ? renderSwords(Number(value)) : value}
                     </Spec>
                 </SpecWrapper>
             ))}

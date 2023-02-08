@@ -1,4 +1,4 @@
-export interface Quest {
+export type Quest = {
     id: number;
     skillTree: string;
     skill: string;
@@ -8,6 +8,6 @@ export interface Quest {
     gold: number;
     type: string;
     cover: string;
-}
+};
 
-export interface Quests extends Array<Quest> {}
+export type Quests = Array<Quest>;
