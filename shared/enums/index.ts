@@ -8,3 +8,7 @@ export const enum COLORS {
     BLUE = 'blue',
     GREEN = 'green'
 }
+
+export const enum RESOURCES {
+    QUESTS = 'Quests'
+}
