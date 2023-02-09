@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import GlobalStyle from '@/styles/GlobalStyles';
 import { darkTheme } from '@/styles/theme';
-import { Hydrate, QueryClient, QueryClientConfig, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientConfig, QueryClientProvider } from '@tanstack/react-query';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
@@ -32,9 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <QueryClientProvider client={client.current}>
                 <ThemeProvider theme={darkTheme}>
                     <GlobalStyle />
-                    <Hydrate state={pageProps.dehydratedState}>
-                        <Component {...pageProps} />
-                    </Hydrate>
+                    <Component {...pageProps} />
                 </ThemeProvider>
             </QueryClientProvider>
         </>

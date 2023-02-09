@@ -1,23 +1,43 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handler({ query }: NextApiRequest, res: NextApiResponse<any>) {
-    console.log('Request: ', query);
+const getSkip = ({ limit, page }: { limit: string; page: string }) =>
+    Number.parseInt(limit) * (Number.parseInt(page) - 1);
+
+const getPagination = ({ total, limit, skip }: any) => {
+    const totalPages = Math.ceil(total / limit);
+    const page = skip / limit + 1;
+
+    return {
+        total,
+        limit,
+        skip,
+        nextPage: page + 1,
+        previousPage: page - 1,
+        hasNext: page < totalPages,
+        hasPrevious: page > 1
+    };
+};
+
+export default async function handler({ query }: NextApiRequest, response: NextApiResponse<any>) {
+    const { page = '1', limit = '6' } = query;
+
     try {
-        // Save the data to the collection
-        const getRes = await fetch(`https://dummyjson.com/products?offset=0&limit=6`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
+        const { products, ...pagination }: { products: Array<Record<string, any>>; pagination: any } = await fetch(
+            `https://dummyjson.com/products?skip=${getSkip({
+                page: String(page),
+                limit: String(limit)
+            })}&limit=${limit}`,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             }
-        })
+        )
             .then(response => response.json())
-            .then(data => data.products);
+            .catch(() => Error('An error occurred while fetching the data'));
 
-        if (getRes.code) {
-            throw new Error('An error occurred while fetching the data');
-        }
-
-        const formattedToQuests = getRes.map((quest: any) => {
+        const formattedToQuests = products.map((quest: any) => {
             return {
                 cover: quest.thumbnail,
                 id: quest.id,
@@ -32,12 +52,12 @@ export default async function handler({ query }: NextApiRequest, res: NextApiRes
         });
 
         // Send a response back to the client
-        res.status(200).json(formattedToQuests);
+        response.status(200).json({ data: formattedToQuests, pagination: getPagination(pagination) });
     } catch (error) {
         // If the request fails, an error will be thrown
         console.error(error);
 
         // Send an error response back to the client
-        res.status(500).json('An error occurred while fetching the data');
+        response.status(500).json('An error occurred while fetching the data');
     }
 }

@@ -28,6 +28,7 @@ const Content = styled.main`
     align-items: center;
     align-content: center;
     justify-content: center;
+    gap: 20px 0;
 `;
 
 const Logo = styled.div`

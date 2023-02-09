@@ -3,6 +3,7 @@ import { COLORS } from '@/shared/enums';
 
 export const defaultTheme = {
     radius: {
+        xs: '2.5px',
         s: '3px',
         m: '5px',
         l: '7px',

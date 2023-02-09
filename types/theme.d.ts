@@ -3,6 +3,7 @@ import 'styled-components';
 declare module 'styled-components' {
     export interface DefaultTheme {
         radius: {
+            xs: string;
             s: string;
             m: string;
             l: string;
