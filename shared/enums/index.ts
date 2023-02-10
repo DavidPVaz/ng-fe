@@ -10,5 +10,6 @@ export const enum COLORS {
 }
 
 export const enum RESOURCES {
-    QUESTS = 'Quests'
+    QUESTS = 'Quests',
+    QUEST = 'Quest'
 }

@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { getRandomInRange } from '@/utils';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
     try {
@@ -19,16 +20,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             skillTree: questRes.category.replace('-', ' '), // 'home-decoration' => 'home decoration'
             skill: questRes.brand,
             title: questRes.title,
-            difficulty: Math.floor(questRes.rating),
+            difficulty: getRandomInRange({ min: 1, max: 5 }),
             experience: questRes.stock * 100,
             gold: questRes.price,
             type: '-',
             cover: questRes.thumbnail,
             description: questRes.description,
-            rewards: {
-                experience: questRes.stock * 100,
-                gold: questRes.price
-            }
+            rewards_experience: questRes.stock * 100,
+            rewards_gold: questRes.price
         };
 
         // Send a response back to the client

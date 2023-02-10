@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { getRandomInRange } from '@/utils';
 
 const getSkip = ({ limit, page }: { limit: string; page: string }) =>
     Number.parseInt(limit) * (Number.parseInt(page) - 1);
@@ -45,7 +46,7 @@ export default async function handler({ query }: NextApiRequest, response: NextA
                 id: quest.id,
                 title: quest.title,
                 skillTree: quest.category.replace('-', ' '), // 'home-decoration' => 'home decoration'
-                difficulty: Math.floor(quest.rating),
+                difficulty: getRandomInRange({ min: 1, max: 5 }),
                 skill: quest.brand,
                 experience: quest.stock * 100,
                 type: '-',

@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import GlobalStyle from '@/styles/GlobalStyles';
 import { darkTheme } from '@/styles/theme';
 import { QueryClient, QueryClientConfig, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
@@ -9,7 +10,8 @@ import { ThemeProvider } from 'styled-components';
 const config: QueryClientConfig = {
     defaultOptions: {
         queries: {
-            staleTime: 1000 * 60 * 5
+            staleTime: 1000 * 60 * 5,
+            refetchOnWindowFocus: false
         },
         mutations: {
             retry: 5,
@@ -34,6 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
                     <GlobalStyle />
                     <Component {...pageProps} />
                 </ThemeProvider>
+                <ReactQueryDevtools initialIsOpen={false} />
             </QueryClientProvider>
         </>
     );

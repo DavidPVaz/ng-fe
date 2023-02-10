@@ -9,9 +9,9 @@ type ARGS = {
 };
 
 interface PaginatorAPI {
-    initialApiArgs?: ARGS;
     resource: RESOURCES;
     method: Function;
+    initialApiArgs?: ARGS;
     onError?: ((error: unknown) => void) | undefined;
 }
 

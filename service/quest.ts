@@ -8,9 +8,11 @@ const buildQueryString = (data: Record<any, any> = {}) => {
     return queryString ? `?${queryString}` : '';
 };
 
-const LIST_PATH = 'quests';
+const PATH = 'quests';
 
-const get = ({ path, data }: { path: string; data?: Record<any, any> }) =>
-    AxiosInstance.get(`${path}${buildQueryString(data)}`);
+const getList = ({ path, data }: { path: string; data?: any }) => AxiosInstance.get(`${path}${buildQueryString(data)}`);
+const getById = ({ path, data: { id } }: { path: string; data: { id: string } }) => AxiosInstance.get(`${path}/${id}`);
 
-export const list = async (data?: Record<any, any>) => get({ path: LIST_PATH, data });
+export const list = (data?: Record<any, any>) => getList({ path: PATH, data });
+
+export const findById = (data: { id: string }) => getById({ path: PATH, data });

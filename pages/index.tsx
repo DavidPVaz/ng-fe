@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 import { StyledQuests } from '@/pages/quests';
 import { StyledContent } from '@/shared/components';
 import { usePaginator } from '@/shared/hooks';
@@ -7,11 +8,8 @@ import { QuestService } from '@/service';
 import { RESOURCES } from '@/shared/enums';
 
 const Home = () => {
-    const {
-        response: quests,
-        Paginator,
-        paginatorProps
-    } = usePaginator({
+    const { push } = useRouter();
+    const { response, Paginator, paginatorProps } = usePaginator({
         resource: RESOURCES.QUESTS,
         method: QuestService.list
     });
@@ -20,7 +18,7 @@ const Home = () => {
         <StyledContent>
             <QuestPage>
                 <Paginator {...paginatorProps} />
-                <StyledQuests quests={quests} />
+                <StyledQuests onQuest={(id: number) => push(`/${id}`)} quests={response} />
             </QuestPage>
         </StyledContent>
     );

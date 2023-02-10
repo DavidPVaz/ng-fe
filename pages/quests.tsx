@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StyledCard } from '@/shared/components';
-import { Quest } from '@/types/quests';
+import { Quest, Quests } from '@/types/quests';
 
-export const StyledQuests = ({ quests }: any) =>
+export const StyledQuests = ({ quests, onQuest }: { quests?: Quests; onQuest: Function }) =>
     !quests ? (
         <Description>No items to show.</Description>
     ) : (
         <QuestsWrapper>
             {quests?.map((quest: Quest) => (
-                <StyledCard key={quest.id} {...quest} />
+                <StyledCard onClick={onQuest} key={quest.id} quest={quest} />
             ))}
         </QuestsWrapper>
     );

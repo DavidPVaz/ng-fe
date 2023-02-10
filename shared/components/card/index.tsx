@@ -15,26 +15,30 @@ const renderSwords = (difficulty: number) =>
         .fill(0)
         .map((_, index) => <StyledSword key={index} color={difficulty > index ? COLORS.GOLD : undefined} />);
 
-export const StyledCard = ({ cover, id, title, ...rest }: Quest) => (
-    <Card onClick={() => {}}>
-        <ImageHeader>
-            <StyledImage src={cover} alt={`Quest ${id} thumbnail`} lazy />
-        </ImageHeader>
-        <DetailsTop>
-            <QuestTitle>{title}</QuestTitle>
-        </DetailsTop>
-        <Details>
-            {Object.entries(rest).map(([key, value]) => (
-                <SpecWrapper key={key}>
-                    <Spec color={COLORS.GOLD}>{key}</Spec>
-                    <Spec color={isKey({ key, expected: EXPECTED.SKILL_TREE }) ? COLORS.BLUE : undefined}>
-                        {isKey({ key, expected: EXPECTED.DIFFICULTY }) ? renderSwords(Number(value)) : value}
-                    </Spec>
-                </SpecWrapper>
-            ))}
-        </Details>
-    </Card>
-);
+export const StyledCard = ({ onClick, quest }: { onClick: Function; quest: Quest }) => {
+    const { cover, id, title, ...rest } = quest;
+
+    return (
+        <Card onClick={() => onClick(id)}>
+            <ImageHeader>
+                <StyledImage src={cover} alt={`Quest ${id} thumbnail`} lazy />
+            </ImageHeader>
+            <DetailsTop>
+                <QuestTitle>{title}</QuestTitle>
+            </DetailsTop>
+            <Details>
+                {Object.entries(rest).map(([key, value]) => (
+                    <SpecWrapper key={key}>
+                        <Spec color={COLORS.GOLD}>{key}</Spec>
+                        <Spec color={isKey({ key, expected: EXPECTED.SKILL_TREE }) ? COLORS.BLUE : undefined}>
+                            {isKey({ key, expected: EXPECTED.DIFFICULTY }) ? renderSwords(Number(value)) : value}
+                        </Spec>
+                    </SpecWrapper>
+                ))}
+            </Details>
+        </Card>
+    );
+};
 
 const Card = styled.div`
     flex-direction: column;
