@@ -3,11 +3,13 @@ import { NextApiRequest, NextApiResponse } from 'next';
 const getSkip = ({ limit, page }: { limit: string; page: string }) =>
     Number.parseInt(limit) * (Number.parseInt(page) - 1);
 
-const getPagination = ({ total, limit, skip }: any) => {
-    const totalPages = Math.ceil(total / limit);
-    const page = skip / limit + 1;
+const getPagination = ({ total, limit, skip, appLimit }: any) => {
+    const definedLimit = limit >= appLimit ? limit : appLimit;
+    const totalPages = Math.ceil(total / definedLimit);
+    const page = skip / definedLimit + 1;
 
     return {
+        totalPages,
         total,
         limit,
         skip,
@@ -52,7 +54,9 @@ export default async function handler({ query }: NextApiRequest, response: NextA
         });
 
         // Send a response back to the client
-        response.status(200).json({ data: formattedToQuests, pagination: getPagination(pagination) });
+        response
+            .status(200)
+            .json({ data: formattedToQuests, pagination: getPagination({ ...pagination, appLimit: limit }) });
     } catch (error) {
         // If the request fails, an error will be thrown
         console.error(error);

@@ -27,8 +27,7 @@ const Content = styled.main`
     flex-direction: column;
     align-items: center;
     align-content: center;
-    justify-content: center;
-    gap: 20px 0;
+    justify-content: flex-start;
 `;
 
 const Logo = styled.div`

@@ -8,9 +8,8 @@ type API_READ_ARGS = {
     keepPreviousData?: boolean;
     initialData?: any;
     withPagination?: boolean;
+    onError?: ((error: unknown) => void) | undefined;
 };
-
-type Error = { message?: string } | string | any;
 
 const DEFAULT_PAGINATION = {
     previousPage: null,
@@ -19,10 +18,9 @@ const DEFAULT_PAGINATION = {
     hasNext: false,
     total: null,
     limit: null,
-    skip: null
+    skip: null,
+    totalPages: null
 };
-
-const getMessage = (error: Error) => error?.message ?? error;
 
 export const useApiRead = ({
     resource,
@@ -31,20 +29,21 @@ export const useApiRead = ({
     args = {},
     enabled = true,
     keepPreviousData = false,
-    withPagination = false
+    withPagination = false,
+    onError = () => {}
 }: API_READ_ARGS) => {
-    const { isLoading, isFetching, data, error } = useQuery({
+    const { isLoading, isFetching, data } = useQuery({
         queryKey: [resource, ...Object.values(args)],
         queryFn: () => method(args),
         initialData,
         enabled,
-        keepPreviousData
+        keepPreviousData,
+        onError
     });
 
     return {
         loading: isLoading || isFetching,
         response: data?.data ?? data,
-        error: getMessage(error),
         paginated: withPagination ? data?.pagination ?? DEFAULT_PAGINATION : null
     };
 };

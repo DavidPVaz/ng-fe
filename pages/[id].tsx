@@ -5,11 +5,6 @@ import { RESOURCES } from '@/shared/enums';
 import { useRouter } from 'next/router';
 
 const StyledQuest = ({}) => {
-    /*
-    const { query: args } = useRouter();
-    const { response, loading, error } = useApiRead({ resource: RESOURCES.QUESTS, method: QuestService.list, args });
-    console.log('Response: ', response);*/
-
     return (
         <StyledContent>
             <></>
