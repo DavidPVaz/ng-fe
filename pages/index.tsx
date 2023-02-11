@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { StyledQuests } from '@/pages/quests';
-import { StyledContent } from '@/shared/components';
 import { usePaginator } from '@/shared/hooks';
 import { QuestService } from '@/service';
 import { RESOURCES } from '@/shared/enums';
@@ -15,23 +14,21 @@ const Home = () => {
     });
 
     return (
-        <StyledContent>
-            <QuestPage>
-                <Paginator {...paginatorProps} />
-                <StyledQuests onQuest={(id: number) => push(`/${id}`)} quests={response} />
-            </QuestPage>
-        </StyledContent>
+        <QuestsPage>
+            <Paginator {...paginatorProps} />
+            <StyledQuests onQuest={(id: number) => push(`/${id}`)} quests={response} />
+        </QuestsPage>
     );
 };
 
 export default Home;
 
-const QuestPage = styled.div`
+const QuestsPage = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
     margin-bottom: 168px;
-    margin-top: 125px;
+    margin-top: 174px;
     gap: 20px 0;
     justify-content: center;
 

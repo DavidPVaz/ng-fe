@@ -1,11 +1,14 @@
-import { StyledContent } from '@/shared/components';
 import { useApiRead } from '@/shared/hooks';
 import { QuestService } from '@/service';
 import { RESOURCES } from '@/shared/enums';
 import { useRouter } from 'next/router';
 import { Quest } from '@/types/quests';
 
-const StyledQuest = ({ quest }: Quest) => {
+interface Props {
+    quest: Quest;
+}
+
+const StyledQuest = ({ quest }: Props) => {
     const { response, loading } = useApiRead({
         resource: RESOURCES.QUEST,
         method: QuestService.findById,
@@ -15,11 +18,11 @@ const StyledQuest = ({ quest }: Quest) => {
     });
 
     return (
-        <StyledContent>
+        <>
             {Object.values(response ?? {}).map((value: any, index: number) => (
                 <div key={index}>{value}</div>
             ))}
-        </StyledContent>
+        </>
     );
 };
 

@@ -39,7 +39,7 @@ const Arrow = styled.span`
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: ${({ type }: { type: string }) =>
+        transform: ${({ type }: Arrow) =>
             type === 'previous' ? 'translate(-25%, -50%) rotate(-135deg)' : 'translate(-75%, -50%) rotate(45deg)'};
     }
 `;

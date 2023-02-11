@@ -11,12 +11,12 @@ type ARGS = {
 interface PaginatorAPI {
     resource: RESOURCES;
     method: Function;
-    initialApiArgs?: ARGS;
+    paginationArgs?: ARGS;
     onError?: ((error: unknown) => void) | undefined;
 }
 
-export const usePaginator = ({ initialApiArgs = { page: 1, limit: 6 }, resource, method, onError }: PaginatorAPI) => {
-    const [args, setArgs] = useState(initialApiArgs);
+export const usePaginator = ({ paginationArgs = { page: 1, limit: 6 }, resource, method, onError }: PaginatorAPI) => {
+    const [args, setArgs] = useState(paginationArgs);
 
     const {
         response,

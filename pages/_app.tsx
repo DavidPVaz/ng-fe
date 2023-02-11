@@ -1,11 +1,12 @@
 import { useRef } from 'react';
-import GlobalStyle from '@/styles/GlobalStyles';
-import { darkTheme } from '@/styles/theme';
 import { QueryClient, QueryClientConfig, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { ThemeProvider } from 'styled-components';
+import GlobalStyle from '@/styles/GlobalStyles';
+import { darkTheme } from '@/styles/theme';
+import type { AppProps } from 'next/app';
+import styled, { ThemeProvider } from 'styled-components';
+import { StyledImage } from '@/shared/components';
 
 const config: QueryClientConfig = {
     defaultOptions: {
@@ -34,10 +35,53 @@ export default function App({ Component, pageProps }: AppProps) {
             <QueryClientProvider client={client.current}>
                 <ThemeProvider theme={darkTheme}>
                     <GlobalStyle />
-                    <Component {...pageProps} />
+                    <StyledContent>
+                        <Component {...pageProps} />
+                    </StyledContent>
                 </ThemeProvider>
                 <ReactQueryDevtools initialIsOpen={false} />
             </QueryClientProvider>
         </>
     );
 }
+
+const StyledContent = ({ children }: { children: React.ReactNode }) => (
+    <>
+        <Head>
+            <title>Node Guardians</title>
+            <meta name="description" content="Node Guardians frontend" />
+        </Head>
+
+        <Content>
+            <Logo>
+                <StyledImage src={'https://nodeguardians.io/assets/logo-white.svg'} alt={'Node Guardians logo'} />
+            </Logo>
+
+            {children}
+        </Content>
+    </>
+);
+
+const Content = styled.main`
+    display: flex;
+    width: 100vw;
+    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-start;
+`;
+
+const Logo = styled.div`
+    position: absolute;
+    width: 285px;
+    height: 34.82px;
+    left: 28px;
+    top: 10px;
+
+    @media only screen and (max-width: 450px) {
+        width: 200px;
+        height: auto;
+        left: calc(50% - (200px / 2));
+    }
+`;

@@ -3,7 +3,12 @@ import styled from 'styled-components';
 import { StyledCard } from '@/shared/components';
 import { Quest, Quests } from '@/types/quests';
 
-export const StyledQuests = ({ quests, onQuest }: { quests?: Quests; onQuest: Function }) =>
+interface Props {
+    quests?: Quests;
+    onQuest: Function;
+}
+
+export const StyledQuests = ({ quests, onQuest }: Props) =>
     !quests ? (
         <Description>No items to show.</Description>
     ) : (

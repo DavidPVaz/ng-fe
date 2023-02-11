@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-type API_READ_ARGS = {
+interface ReadApi {
     resource: string;
     method: Function;
     args?: Record<any, any>;
@@ -9,7 +9,7 @@ type API_READ_ARGS = {
     initialData?: any;
     withPagination?: boolean;
     onError?: ((error: unknown) => void) | undefined;
-};
+}
 
 const DEFAULT_PAGINATION = {
     previousPage: null,
@@ -31,7 +31,7 @@ export const useApiRead = ({
     keepPreviousData = false,
     withPagination = false,
     onError = () => {}
-}: API_READ_ARGS) => {
+}: ReadApi) => {
     const { isLoading, isFetching, data } = useQuery({
         queryKey: [resource, ...Object.values(args)],
         queryFn: () => method(args),
