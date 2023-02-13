@@ -14,12 +14,7 @@ const Context = createContext<PaginationContext>(DEFAULT);
 const PaginationContextProvider = ({ children }: { children: React.ReactNode }) => {
     const [paginationArgs, setPaginationArgs] = useState<PaginatorArgs>(DEFAULT.paginationArgs);
 
-    const context = {
-        paginationArgs,
-        setPaginationArgs: useCallback(setPaginationArgs, [setPaginationArgs])
-    };
-
-    return <Context.Provider value={context}>{children}</Context.Provider>;
+    return <Context.Provider value={{ paginationArgs, setPaginationArgs }}>{children}</Context.Provider>;
 };
 
 export default Context;
