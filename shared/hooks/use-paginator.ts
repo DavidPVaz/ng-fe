@@ -1,22 +1,18 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useContext } from 'react';
 import { useApiRead } from '@/shared/hooks';
 import { StyledPaginator } from '@/shared/components';
 import { RESOURCES } from '@/shared/enums';
-
-type ARGS = {
-    page: number;
-    limit: number;
-};
+import { PaginationContext } from '@/types';
+import Context from '@/app/context';
 
 interface PaginatorAPI {
     resource: RESOURCES;
     method: Function;
-    paginationArgs?: ARGS;
     onError?: ((error: unknown) => void) | undefined;
 }
 
-export const usePaginator = ({ paginationArgs = { page: 1, limit: 6 }, resource, method, onError }: PaginatorAPI) => {
-    const [args, setArgs] = useState(paginationArgs);
+export const usePaginator = ({ resource, method, onError }: PaginatorAPI) => {
+    const { paginationArgs, setPaginationArgs } = useContext<PaginationContext>(Context);
 
     const {
         response,
@@ -25,24 +21,27 @@ export const usePaginator = ({ paginationArgs = { page: 1, limit: 6 }, resource,
     } = useApiRead({
         resource,
         method,
-        args,
+        args: paginationArgs,
         withPagination: true,
         keepPreviousData: true,
         onError
     });
 
     const onPrevious = useCallback(
-        () => hasPrevious && setArgs(args => ({ ...args, page: previousPage })),
-        [hasPrevious, previousPage, setArgs]
+        () => hasPrevious && setPaginationArgs(args => ({ ...args, page: previousPage })),
+        [hasPrevious, previousPage, setPaginationArgs]
     );
     const onNext = useCallback(
-        () => hasNext && setArgs(args => ({ ...args, page: nextPage })),
-        [hasNext, nextPage, setArgs]
+        () => hasNext && setPaginationArgs(args => ({ ...args, page: nextPage })),
+        [hasNext, nextPage, setPaginationArgs]
     );
-    const onFirst = useCallback(() => hasPrevious && setArgs(args => ({ ...args, page: 1 })), [hasPrevious, setArgs]);
+    const onFirst = useCallback(
+        () => hasPrevious && setPaginationArgs(args => ({ ...args, page: 1 })),
+        [hasPrevious, setPaginationArgs]
+    );
     const onLast = useCallback(
-        () => hasNext && setArgs(args => ({ ...args, page: totalPages })),
-        [hasNext, totalPages, setArgs]
+        () => hasNext && setPaginationArgs(args => ({ ...args, page: totalPages })),
+        [hasNext, totalPages, setPaginationArgs]
     );
     const description = useMemo(
         () => (loading ? 'Loading...' : `Showing ${skip + 1} to ${skip + limit} of ${total}.`),

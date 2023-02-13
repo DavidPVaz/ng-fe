@@ -2,7 +2,7 @@ import { useApiRead } from '@/shared/hooks';
 import { QuestService } from '@/service';
 import { RESOURCES } from '@/shared/enums';
 import { useRouter } from 'next/router';
-import { Quest } from '@/types/quests';
+import { Quest } from '@/types';
 import { StyledSingleCard } from '@/shared/components';
 
 interface Props {

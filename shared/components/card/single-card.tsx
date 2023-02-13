@@ -209,7 +209,7 @@ const QuestTitle = styled.span`
 `;
 
 const Details = styled.div`
-    margin-top: 8px;
+    margin-top: ${({ theme: { spacing } }) => spacing['4xs']}};
     display: flex;
     position: relative;
     flex-direction: column;
@@ -256,7 +256,7 @@ const Spec = styled.span`
     text-transform: capitalize;
     display: flex;
     justify-content: flex-start;
-    gap: 0 2px;
+    gap: ${({ theme: { spacing } }) => `0 ${spacing['7xs']}`};
     color: ${({ color = COLORS.WHITE, theme: { colors } }: any) => colors[color]};
 `;
 
@@ -373,7 +373,7 @@ const Close = styled.div`
     top: 15px;
     right: 17px;
 
-    &: hover {
+    &:hover {
         cursor: pointer;
     }
 `;

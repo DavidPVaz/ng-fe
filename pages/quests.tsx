@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StyledListCard } from '@/shared/components';
-import { Quest, Quests } from '@/types/quests';
+import { Quest, Quests } from '@/types';
 
 interface Props {
     quests?: Quests;

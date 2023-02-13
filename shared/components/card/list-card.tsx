@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { StyledImage } from '@/shared/components';
 import { COLORS } from '@/shared/enums';
-import { Quest } from '@/types/quests';
+import { Quest } from '@/types';
 import { renderSwords, calculateImageHeaderHeightPercentage } from './common';
 
 enum EXPECTED {
@@ -119,7 +119,7 @@ const DetailsTop = styled.div`
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    padding-left: 12px;
+    padding-left: ${({ theme: { spacing } }) => spacing['3xs']};
 `;
 
 const QuestTitle = styled.span`
@@ -146,12 +146,11 @@ const Details = styled.div`
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding-left: 12px;
-    padding-right: 12px;
+    padding: ${({ theme: { spacing } }) => `0 ${spacing['3xs']} 0 ${spacing['3xs']}`};
     gap: 10px 35px;
 
     @media only screen and (max-width: 400px) {
-        gap: 6px 6px;
+        gap: ${({ theme: { spacing } }) => `${spacing['5xs']} ${spacing['5xs']}`};
     }
 `;
 
@@ -180,6 +179,6 @@ const Spec = styled.span`
     text-transform: capitalize;
     display: flex;
     justify-content: flex-start;
-    gap: 0 2px;
+    gap: ${({ theme: { spacing } }) => `0 ${spacing['7xs']}`};
     color: ${({ color = COLORS.WHITE, theme: { colors } }: any) => colors[color]};
 `;
