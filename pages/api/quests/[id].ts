@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getRandomInRange } from '@/utils';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
+export default async function handler({ query }: NextApiRequest, res: NextApiResponse<any>) {
     try {
         // Fetch a product by id
-        const questRes = await fetch(`https://dummyjson.com/products/${String(req.query.id)}`, {
+        const questRes = await fetch(`https://dummyjson.com/products/${String(query.id)}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -25,9 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             gold: questRes.price,
             type: '-',
             cover: questRes.thumbnail,
-            description: questRes.description,
-            rewards_experience: questRes.stock * 100,
-            rewards_gold: questRes.price
+            description: questRes.description
         };
 
         // Send a response back to the client

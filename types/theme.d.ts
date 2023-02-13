@@ -42,10 +42,13 @@ declare module 'styled-components' {
         };
         width: {
             card: number;
+            singleCard: number;
         };
         height: {
             card: number;
             questListImage: number;
+            singleQuestImage: number;
+            singleCard: number;
         };
     }
 }

@@ -31,11 +31,14 @@ export const defaultTheme = {
         '8xl': '180px'
     },
     width: {
-        card: 332
+        card: 332,
+        singleCard: 755
     },
     height: {
         card: 222,
-        questListImage: 106.10514831542969
+        questListImage: 106.10514831542969,
+        singleCard: 635,
+        singleQuestImage: 270
     }
 };
 

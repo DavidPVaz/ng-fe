@@ -3,13 +3,15 @@ import { QuestService } from '@/service';
 import { RESOURCES } from '@/shared/enums';
 import { useRouter } from 'next/router';
 import { Quest } from '@/types/quests';
+import { StyledSingleCard } from '@/shared/components';
 
 interface Props {
     quest: Quest;
 }
 
 const StyledQuest = ({ quest }: Props) => {
-    const { response, loading } = useApiRead({
+    const { push } = useRouter();
+    const { response } = useApiRead({
         resource: RESOURCES.QUEST,
         method: QuestService.findById,
         args: { id: quest.id },
@@ -17,13 +19,7 @@ const StyledQuest = ({ quest }: Props) => {
         enabled: !!quest.id
     });
 
-    return (
-        <>
-            {Object.values(response ?? {}).map((value: any, index: number) => (
-                <div key={index}>{value}</div>
-            ))}
-        </>
-    );
+    return <StyledSingleCard onBack={() => push('/')} {...response} />;
 };
 
 export default StyledQuest;

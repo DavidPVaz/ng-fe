@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StyledImage, StyledSword } from '@/shared/components';
+import { StyledImage } from '@/shared/components';
 import { COLORS } from '@/shared/enums';
 import { Quest } from '@/types/quests';
+import { renderSwords, calculateImageHeaderHeightPercentage } from './common';
 
 enum EXPECTED {
     SKILL_TREE = 'skillTree',
@@ -10,12 +11,7 @@ enum EXPECTED {
 }
 const isKey = ({ key, expected }: { key: string; expected: string }) => key === expected;
 
-const renderSwords = (difficulty: number) =>
-    Array(5)
-        .fill(0)
-        .map((_, index) => <StyledSword key={index} color={difficulty > index ? COLORS.GOLD : undefined} />);
-
-export const StyledCard = ({ onClick, quest }: { onClick: Function; quest: Quest }) => {
+export const StyledListCard = ({ onClick, quest }: { onClick: Function; quest: Quest }) => {
     const { cover, id, title, ...rest } = quest;
 
     return (
@@ -99,16 +95,13 @@ const Card = styled.div`
     }
 `;
 
-const calculateImageHeaderHeightPercentage = ({ questListImage, card }: { questListImage: number; card: number }) =>
-    (questListImage * 100) / card;
-
 const ImageHeader = styled.div`
     position: relative;
     height: ${({
         theme: {
             height: { card, questListImage }
         }
-    }) => `${calculateImageHeaderHeightPercentage({ questListImage, card })}%`};
+    }) => `${calculateImageHeaderHeightPercentage({ image: questListImage, card })}%`};
     width: ${({ theme: { spacing } }) => `calc(100% - (${spacing['5xs']} * 2))`};
     border-radius: ${({
         theme: {
@@ -127,16 +120,17 @@ const DetailsTop = styled.div`
     justify-content: flex-start;
     align-items: center;
     padding-left: 12px;
-    height: 19px;
 `;
 
 const QuestTitle = styled.span`
+    position: relative;
     display: flex;
     align-items: center;
     font-family: Cinzel;
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
+    line-height: 19px;
     text-transform: uppercase;
     color: ${({
         theme: {
@@ -146,7 +140,7 @@ const QuestTitle = styled.span`
 `;
 
 const Details = styled.div`
-    margin-top: 8px;
+    margin-top: 5px;
     display: flex;
     position: relative;
     flex-direction: row;

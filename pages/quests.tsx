@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StyledCard } from '@/shared/components';
+import { StyledListCard } from '@/shared/components';
 import { Quest, Quests } from '@/types/quests';
 
 interface Props {
@@ -14,7 +14,7 @@ export const StyledQuests = ({ quests, onQuest }: Props) =>
     ) : (
         <QuestsWrapper>
             {quests?.map((quest: Quest) => (
-                <StyledCard onClick={onQuest} key={quest.id} quest={quest} />
+                <StyledListCard onClick={onQuest} key={quest.id} quest={quest} />
             ))}
         </QuestsWrapper>
     );

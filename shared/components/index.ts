@@ -1,8 +1,23 @@
 import { StyledImage } from './image';
-import { StyledCard } from './card';
+import { StyledListCard, StyledSingleCard } from './card';
 import { StyledSword } from './sword';
 import { StyledButton } from './button';
 import { StyledArrow } from './arrow';
 import { StyledPaginator } from './paginator';
+import { LeftDelineatorIcon, RightDelineatorIcon } from './delineator';
+import { ExperienceIcon } from './experience';
+import { CloseIcon } from './close';
 
-export { StyledImage, StyledCard, StyledSword, StyledButton, StyledArrow, StyledPaginator };
+export {
+    StyledImage,
+    StyledListCard,
+    StyledSingleCard,
+    StyledSword,
+    StyledButton,
+    StyledArrow,
+    StyledPaginator,
+    LeftDelineatorIcon,
+    RightDelineatorIcon,
+    ExperienceIcon,
+    CloseIcon
+};
