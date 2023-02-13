@@ -1,8 +1,8 @@
 export const RightDelineatorIcon = () => (
     <svg width="149" height="9" viewBox="0 0 149 9" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M10.8281 5.99091C10.9405 5.51212 11 5.01293 11 4.49985C11 3.98678 10.9405 3.48758 10.8281 3.00879L149 4.49985L10.8281 5.99091Z"
             fill="url(#paint0_linear_1_190)"
         />
@@ -23,8 +23,8 @@ export const RightDelineatorIcon = () => (
                 y2="4.49997"
                 gradientUnits="userSpaceOnUse"
             >
-                <stop stop-color="#6D5D43" />
-                <stop offset="1" stop-color="#59503F" stop-opacity="0" />
+                <stop stopColor="#6D5D43" />
+                <stop offset="1" stopColor="#59503F" stopOpacity="0" />
             </linearGradient>
         </defs>
     </svg>

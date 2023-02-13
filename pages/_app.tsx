@@ -7,7 +7,7 @@ import { darkTheme } from '@/styles/theme';
 import type { AppProps } from 'next/app';
 import styled, { ThemeProvider } from 'styled-components';
 import { StyledImage } from '@/shared/components';
-import { PaginationContextProvider } from '@/app/context';
+import { PaginationContextProvider } from '@/context';
 
 const config: QueryClientConfig = {
     defaultOptions: {

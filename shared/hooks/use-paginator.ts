@@ -3,7 +3,7 @@ import { useApiRead } from '@/shared/hooks';
 import { StyledPaginator } from '@/shared/components';
 import { RESOURCES } from '@/shared/enums';
 import { PaginationContext } from '@/types';
-import Context from '@/app/context';
+import Context from '@/context';
 
 interface PaginatorAPI {
     resource: RESOURCES;
