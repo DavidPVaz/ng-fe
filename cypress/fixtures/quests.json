@@ -1,0 +1,80 @@
+{
+    "data": [
+        {
+            "cover": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+            "id": 1,
+            "title": "iPhone 9",
+            "skillTree": "smartphones",
+            "difficulty": 4,
+            "skill": "Apple",
+            "experience": 9400,
+            "type": "-",
+            "gold": 549
+        },
+        {
+            "cover": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+            "id": 2,
+            "title": "iPhone X",
+            "skillTree": "smartphones",
+            "difficulty": 4,
+            "skill": "Apple",
+            "experience": 3400,
+            "type": "-",
+            "gold": 899
+        },
+        {
+            "cover": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
+            "id": 3,
+            "title": "Samsung Universe 9",
+            "skillTree": "smartphones",
+            "difficulty": 4,
+            "skill": "Samsung",
+            "experience": 3600,
+            "type": "-",
+            "gold": 1249
+        },
+        {
+            "cover": "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
+            "id": 4,
+            "title": "OPPOF19",
+            "skillTree": "smartphones",
+            "difficulty": 4,
+            "skill": "OPPO",
+            "experience": 12300,
+            "type": "-",
+            "gold": 280
+        },
+        {
+            "cover": "https://i.dummyjson.com/data/products/5/thumbnail.jpg",
+            "id": 5,
+            "title": "Huawei P30",
+            "skillTree": "smartphones",
+            "difficulty": 4,
+            "skill": "Huawei",
+            "experience": 3200,
+            "type": "-",
+            "gold": 499
+        },
+        {
+            "cover": "https://i.dummyjson.com/data/products/6/thumbnail.png",
+            "id": 6,
+            "title": "MacBook Pro",
+            "skillTree": "laptops",
+            "difficulty": 4,
+            "skill": "Apple",
+            "experience": 8300,
+            "type": "-",
+            "gold": 1749
+        }
+    ],
+    "pagination": {
+        "totalPages": 17,
+        "total": 100,
+        "limit": 6,
+        "skip": 0,
+        "nextPage": 2,
+        "previousPage": 0,
+        "hasNext": true,
+        "hasPrevious": false
+    }
+}

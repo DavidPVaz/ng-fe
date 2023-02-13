@@ -46,7 +46,7 @@ export default async function handler({ query }: NextApiRequest, response: NextA
                 id: quest.id,
                 title: quest.title,
                 skillTree: quest.category.replace('-', ' '), // 'home-decoration' => 'home decoration'
-                difficulty: getRandomInRange({ min: 1, max: 5 }),
+                difficulty: Math.floor(quest.rating),
                 skill: quest.brand,
                 experience: quest.stock * 100,
                 type: '-',

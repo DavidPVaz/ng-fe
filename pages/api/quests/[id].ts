@@ -20,7 +20,7 @@ export default async function handler({ query }: NextApiRequest, res: NextApiRes
             skillTree: questRes.category.replace('-', ' '), // 'home-decoration' => 'home decoration'
             skill: questRes.brand,
             title: questRes.title,
-            difficulty: getRandomInRange({ min: 1, max: 5 }),
+            difficulty: Math.floor(questRes.rating),
             experience: questRes.stock * 100,
             gold: questRes.price,
             type: '-',
