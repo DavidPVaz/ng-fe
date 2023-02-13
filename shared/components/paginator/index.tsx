@@ -22,18 +22,20 @@ export const StyledPaginator = ({
     hasPrevious
 }: Paginator) => (
     <Paginator>
-        <StyledButton onClick={onFirst} disabled={!hasPrevious}>
-            <PaginatorTextButton>First</PaginatorTextButton>
-        </StyledButton>
-        <StyledButton onClick={onPrevious} disabled={!hasPrevious}>
-            <StyledArrow type={'previous'} />
-        </StyledButton>
-        <StyledButton onClick={onNext} disabled={!hasNext}>
-            <StyledArrow type={'next'} />
-        </StyledButton>
-        <StyledButton onClick={onLast} disabled={!hasNext}>
-            <PaginatorTextButton>Last</PaginatorTextButton>
-        </StyledButton>
+        <ButtonWrapper>
+            <StyledButton onClick={onFirst} disabled={!hasPrevious}>
+                <PaginatorTextButton>First</PaginatorTextButton>
+            </StyledButton>
+            <StyledButton onClick={onPrevious} disabled={!hasPrevious}>
+                <StyledArrow type={'previous'} />
+            </StyledButton>
+            <StyledButton onClick={onNext} disabled={!hasNext}>
+                <StyledArrow type={'next'} />
+            </StyledButton>
+            <StyledButton onClick={onLast} disabled={!hasNext}>
+                <PaginatorTextButton>Last</PaginatorTextButton>
+            </StyledButton>
+        </ButtonWrapper>
         <Description>{description}</Description>
     </Paginator>
 );
@@ -49,7 +51,18 @@ const Paginator = styled.div`
 
     @media only screen and (max-width: 750px) {
         justify-content: center;
+        flex-direction: column;
+        gap: 10px 0;
     }
+`;
+
+const ButtonWrapper = styled.div`
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    gap: 0 10px;
 `;
 
 const Description = styled.span`
