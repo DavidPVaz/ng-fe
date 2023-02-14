@@ -11,5 +11,10 @@ declare namespace Cypress {
          * Custom command that gets a specific element by id
          */
         findByTestId(id: string): Chainable<JQuery<HTMLElement>>;
+
+        /**
+         * Custom command to clear browser cache
+         */
+        clearBrowserCache(): void;
     }
 }

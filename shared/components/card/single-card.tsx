@@ -38,8 +38,8 @@ export const StyledSingleCard = ({
     experience,
     gold
 }: SingleQuest) => (
-    <Card>
-        <Close onClick={onBack}>
+    <Card data-cy={`single-card-${id}`}>
+        <Close onClick={onBack} data-cy={`card-close`}>
             <CloseIcon />
         </Close>
         <ImageHeader>
@@ -84,7 +84,7 @@ export const StyledSingleCard = ({
                         </Box>
                     </BoxWrapper>
                 </RewardsSection>
-                <StyledButton onClick={onBack} withPadding>
+                <StyledButton onClick={onBack} withPadding data-cy={`card-back`}>
                     <TextButton>go back</TextButton>
                 </StyledButton>
             </CardFooter>

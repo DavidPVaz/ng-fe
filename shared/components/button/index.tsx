@@ -5,14 +5,15 @@ export const StyledButton = ({
     children,
     onClick,
     withPadding = false,
-    disabled = false
+    disabled = false,
+    ...rest
 }: {
     children: React.ReactNode;
     onClick: (event: React.MouseEvent) => void;
     withPadding?: boolean;
     disabled?: boolean;
 }) => (
-    <Button onClick={onClick} withPadding={withPadding} disabled={disabled}>
+    <Button onClick={onClick} withPadding={withPadding} disabled={disabled} {...rest}>
         {children}
     </Button>
 );

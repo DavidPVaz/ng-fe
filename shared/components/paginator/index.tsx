@@ -23,20 +23,20 @@ export const StyledPaginator = ({
 }: Paginator) => (
     <Paginator>
         <ButtonWrapper>
-            <StyledButton onClick={onFirst} disabled={!hasPrevious}>
+            <StyledButton onClick={onFirst} disabled={!hasPrevious} data-cy={'first'}>
                 <PaginatorTextButton>First</PaginatorTextButton>
             </StyledButton>
-            <StyledButton onClick={onPrevious} disabled={!hasPrevious}>
+            <StyledButton onClick={onPrevious} disabled={!hasPrevious} data-cy={'previous'}>
                 <StyledArrow type={'previous'} />
             </StyledButton>
-            <StyledButton onClick={onNext} disabled={!hasNext}>
+            <StyledButton onClick={onNext} disabled={!hasNext} data-cy={'next'}>
                 <StyledArrow type={'next'} />
             </StyledButton>
-            <StyledButton onClick={onLast} disabled={!hasNext}>
+            <StyledButton onClick={onLast} disabled={!hasNext} data-cy={'last'}>
                 <PaginatorTextButton>Last</PaginatorTextButton>
             </StyledButton>
         </ButtonWrapper>
-        <Description>{description}</Description>
+        <Description data-cy={'paginator-description'}>{description}</Description>
     </Paginator>
 );
 

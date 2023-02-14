@@ -22,8 +22,21 @@ const config: QueryClientConfig = {
     }
 };
 
+declare global {
+    interface Window extends Global {
+        Cypress: any;
+        queryClient: any;
+        appReady: boolean;
+    }
+}
+
 export default function App({ Component, pageProps }: AppProps) {
     const client = useRef(new QueryClient(config));
+
+    if (global?.window?.Cypress) {
+        global.window.queryClient = client;
+        global.window.appReady = true;
+    }
 
     return (
         <>

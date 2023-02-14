@@ -1,4 +1,3 @@
-/// <reference types="cypress" />
 export {};
 
 Cypress.Commands.add('requestCalled', (requestAlias: string, expectedNumberOfCalls: number) =>

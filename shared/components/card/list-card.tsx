@@ -15,7 +15,7 @@ export const StyledListCard = ({ onClick, quest }: { onClick: Function; quest: Q
     const { cover, id, title, ...rest } = quest;
 
     return (
-        <Card onClick={() => onClick(id)}>
+        <Card onClick={() => onClick(id)} data-cy={`list-card-${id}`}>
             <ImageHeader>
                 <StyledImage src={cover} alt={`Quest ${id} thumbnail`} lazy />
             </ImageHeader>
