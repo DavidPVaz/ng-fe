@@ -10,7 +10,7 @@ interface Props {
 
 export const StyledQuests = ({ quests, onQuest }: Props) =>
     !quests ? (
-        <Description>No items to show.</Description>
+        <Description data-cy={'quests-fallback'}>No items to show.</Description>
     ) : (
         <QuestsWrapper>
             {quests?.map((quest: Quest) => (

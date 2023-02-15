@@ -13,6 +13,11 @@ declare namespace Cypress {
         findByTestId(id: string): Chainable<JQuery<HTMLElement>>;
 
         /**
+         * Custom command that gets an element containing a specific text
+         */
+        findByText(text: string): Chainable<undefined>;
+
+        /**
          * Custom command to clear browser cache
          */
         clearBrowserCache(): void;
