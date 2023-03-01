@@ -1,4 +1,4 @@
-This project was developed as a technical skill assessment test. You can find the requirements below. 
+This project was developed as a technical test. It's my first experience with both Typescript and Nextjs. You can find the requirements below. 
 
 ### Overview
 

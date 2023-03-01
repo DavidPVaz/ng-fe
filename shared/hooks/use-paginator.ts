@@ -1,9 +1,7 @@
-import { useCallback, useMemo, useContext } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useApiRead } from '@/shared/hooks';
 import { StyledPaginator } from '@/shared/components';
 import { RESOURCES } from '@/shared/enums';
-import { PaginationContext } from '@/types';
-import Context from '@/context';
 
 interface PaginatorAPI {
     resource: RESOURCES;
@@ -11,8 +9,13 @@ interface PaginatorAPI {
     onError?: ((error: unknown) => void) | undefined;
 }
 
+const DEFAULT_ARGS = {
+    limit: 6,
+    page: 1
+};
+
 export const usePaginator = ({ resource, method, onError }: PaginatorAPI) => {
-    const { paginationArgs, setPaginationArgs } = useContext<PaginationContext>(Context);
+    const [paginationArgs, setPaginationArgs] = useState(DEFAULT_ARGS);
 
     const {
         response,

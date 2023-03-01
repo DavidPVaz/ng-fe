@@ -11,13 +11,3 @@ export type Quest = {
 };
 
 export type Quests = Array<Quest>;
-
-export type PaginatorArgs = {
-    page: number;
-    limit: number;
-};
-
-export type PaginationContext = {
-    paginationArgs: PaginatorArgs;
-    setPaginationArgs: React.Dispatch<React.SetStateAction<PaginatorArgs>>;
-};

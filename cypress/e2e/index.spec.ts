@@ -140,19 +140,17 @@ describe('Quest page:', () => {
         cy.url().should('include', '/10');
         cy.findByTestId('single-card-10').should('be.visible');
 
-        // go back to homepage to the previous pagination interval on close icon
+        // go back to homepage on close icon
         cy.findByTestId('card-close').should('be.visible').click();
-        cy.findByTestId('paginator-description').should('be.visible').should('have.text', 'Showing 7 to 12 of 100.');
+        cy.findByTestId('paginator-description').should('be.visible').should('have.text', 'Showing 1 to 6 of 100.');
 
-        // go to page 3 and click on quest
-        cy.findByTestId('next').should('be.visible').click();
+        // click on quest
+        cy.findByTestId('list-card-2').should('be.visible').click();
+        cy.url().should('include', '/2');
+        cy.findByTestId('single-card-2').should('be.visible');
 
-        cy.findByTestId('list-card-17').should('be.visible').click();
-        cy.url().should('include', '/17');
-        cy.findByTestId('single-card-17').should('be.visible');
-
-        // go back again to homepage to the previous pagination interval on back button
+        // go back again to homepage on back button
         cy.findByTestId('card-back').should('be.visible').click();
-        cy.findByTestId('paginator-description').should('be.visible').should('have.text', 'Showing 13 to 18 of 100.');
+        cy.findByTestId('paginator-description').should('be.visible').should('have.text', 'Showing 1 to 6 of 100.');
     });
 });

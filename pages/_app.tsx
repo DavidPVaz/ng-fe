@@ -7,7 +7,6 @@ import { darkTheme } from '@/styles/theme';
 import type { AppProps } from 'next/app';
 import styled, { ThemeProvider } from 'styled-components';
 import { StyledImage } from '@/shared/components';
-import { PaginationContextProvider } from '@/context';
 
 const config: QueryClientConfig = {
     defaultOptions: {
@@ -49,11 +48,9 @@ export default function App({ Component, pageProps }: AppProps) {
             <QueryClientProvider client={client.current}>
                 <ThemeProvider theme={darkTheme}>
                     <GlobalStyle />
-                    <PaginationContextProvider>
-                        <StyledContent>
-                            <Component {...pageProps} />
-                        </StyledContent>
-                    </PaginationContextProvider>
+                    <StyledContent>
+                        <Component {...pageProps} />
+                    </StyledContent>
                 </ThemeProvider>
                 <ReactQueryDevtools initialIsOpen={false} />
             </QueryClientProvider>
